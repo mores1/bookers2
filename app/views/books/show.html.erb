@@ -1,0 +1,21 @@
+<div>
+    <%= render 'users/list', user: current_user %>
+    <%= render 'list', book: @book %>
+</div>
+<%= flash[:notice] %>
+<h1>Book detail</h1>
+<div>
+  <%= link_to user_path(@book.user.id) do %>
+    <%= image_tag @book.user.get_profile_image(100,100) %>
+    <%= @book.user.name %>
+  <% end %>
+  <%= link_to edit_book_path(@book) do %>
+    <%= @book.title %>
+  <% end %>
+  <p>(body) <%= @book.body %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "Edit", edit_book_path %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
+</div>
+

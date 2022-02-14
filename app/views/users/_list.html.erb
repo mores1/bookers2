@@ -1,0 +1,14 @@
+<div>
+
+  <h3>User info</h3>
+  <%= image_tag user.get_profile_image(100,100) %>
+  <h3>name</h3>
+  <%= user.name %>
+  <h3>introduction</h3>
+  <%= user.introduction %>
+  <% if user.id == current_user.id %>
+    <%= link_to "プロフィール編集zibun", edit_user_path(user) %>
+  <% else %>
+    <%= link_to "プロフィール編集zibun", edit_user_path(@user) %>
+  <% end %>
+</div>
