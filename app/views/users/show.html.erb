@@ -1,19 +1,45 @@
-<div>
-    <%= render 'list', user: current_user %>
-    <%= render 'books/list', book: @book %>
-</div>
+<div class="container">
+    <div class="row">
+            <div class="col-md-3" style="background-color: gray">
+                <%= render 'list', user: @user %>
+                <%= render 'books/list', book: @book, nbook: @nbook %>
+            </div>
 
+
+            <div class="col-md-8 offset-md-1">
 <!-- ユーザーの投稿一覧 -->
-<%= flash[:alart] %>
-<h2>Books</h2>
-<h4>Title</h4>
-<h4>Opinion</h4>
-<% @books.each do |book| %>
-<div>
-  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <%= link_to book_path(book.id) do %>
-  <%= book.title %>
-  <% end %>
-  <p><%= book.body %></p>
+              <%= flash[:alart] %>
+              <h1>Books</h1>
+              <table class="table table-striped">
+                <tr>
+                  <th></th>
+                  <th>Title</th>
+                  <th>Opinion</th>
+                </tr>
+
+
+              <% @books.each do |book| %>
+                    <% if book.user_id == @user.id %>
+                <tr>
+                  <td>
+                    <%= link_to user_path(book.user.id) do %>
+                      <%= image_tag book.user.get_profile_image(100,100) %>
+                    <% end %>
+                  </td>
+                  <td>
+
+                      <%= link_to book_path(book.id) do %>
+                        <%= book.title %>
+                      <% end %>
+
+                  </td>
+                  <td><%= book.body %></td>
+                    <% end %>
+                </tr>
+              <% end %>
+              </table>
+
+
+            </div>
+    </div>
 </div>
-<% end %>

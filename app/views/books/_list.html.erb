@@ -1,14 +1,14 @@
-  <% if book.errors.any? %>
-    <%= book.errors.count %>errors prohibited this obj from being saved:
+  <% if nbook.errors.any? %>
+    <%= nbook.errors.count %>errors prohibited this obj from being saved:
     <ul>
-      <% book.errors.full_messages.each do |message| %>
+      <% nbook.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   <% end %>
 
 <h1>New book</h1>
-  <%= form_with model: book do |f| %>
+  <%= form_with model: nbook do |f| %>
     <h4>Title</h4>
       <%= f.text_field :title %>
     <h4>Opinion</h4>
